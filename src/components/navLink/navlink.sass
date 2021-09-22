@@ -1,5 +1,4 @@
-
-ul
+.nav-link__ul
   display: flex
   flex-flow: row nowrap
   margin: 0
@@ -8,18 +7,23 @@ ul
   align-items: center
   li
     margin-right: 40px
-    font-family: 'IBM Plex Sans'
+    font-family: 'IBM Plex Sans',serif
     font-size: 15px
     list-style-type: none
     color: #8C8C8C
     &:last-child
       margin-right: 0
       margin-left: 64px
-    a
-      color: #8C8C8C
+    .links__header
       text-decoration: none
+      color: #8C8C8C
       &:hover
         color: #242424
+    .links__footer
+      text-decoration: none
+      color: rgba(255, 255, 255, 0.5)
+      &:hover
+        color: white
 
     button
       width: 113px
