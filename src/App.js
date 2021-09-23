@@ -19,10 +19,32 @@ import {
 
 
 function App() {
-    return (
-        <Router>
-            <div>
-                <Header isLogged={false}/>
+
+    const storageLogin = JSON.parse(localStorage.getItem('isLogin'));
+    let isLogin;
+    !storageLogin || storageLogin===false ? isLogin = false : isLogin = true;
+
+    const ProtectedRoute = () => {
+        if (isLogin) {
+            return (
+                <Switch>
+                    <Route exact path="/my-articles">
+                        <MyArticles/>
+                    </Route>
+                    <Route exact path="/">
+                        <MainPage/>
+                    </Route>
+                    <Route exact path="/add-article">
+                        <AddArticle/>
+                    </Route>
+                    <Route exact path="/profile">
+                        <Profile/>
+                    </Route>
+                    <Redirect to={'/'}/>
+                </Switch>
+            )
+        } else {
+            return(
                 <Switch>
                     <Route exact path="/sigin">
                         <SignIn/>
@@ -30,25 +52,21 @@ function App() {
                     <Route exact path="/login">
                         <Login/>
                     </Route>
-                    <Route exact path="/my-articles">
-                        <MyArticles/>
-                    </Route>
                     <Route exact path="/">
                         <MainPage/>
                     </Route>
-
-                    <Route exact path="/add-article">
-                        <AddArticle/>
-                    </Route>
-                    <Route exact path="/profile">
-                        <Profile/>
-                    </Route>
-                    <Route exact path="/sigin">
-                        <SignIn/>
-                    </Route>
-                    <Redirect to={'/'} />
+                    <Redirect to={'/'}/>
                 </Switch>
-                <Footer isLogged={true}/>
+            )
+        }
+    }
+
+    return (
+        <Router>
+            <div>
+                <Header isLogged={isLogin}/>
+                <ProtectedRoute />
+                <Footer isLogged={isLogin}/>
             </div>
         </Router>
     );

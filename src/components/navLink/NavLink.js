@@ -1,8 +1,9 @@
 import './navlink.sass'
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
 
 export default function NavLinks(props) {
-
+    let [logOut, setLogOut] = useState(JSON.parse(localStorage.getItem("isLogin")))
     const {isFooter} = props;
     const activeStyleHeader = {
         color: "#242424",
@@ -14,6 +15,9 @@ export default function NavLinks(props) {
         borderBottom: "1px solid white",
         paddingBottom: "8px"
     }
+    useEffect(() => {
+        localStorage.setItem('isLogin', JSON.stringify(logOut));
+    }, [logOut])
     return (
         <nav>
             <ul className="nav-link__ul">
@@ -30,9 +34,9 @@ export default function NavLinks(props) {
                     <NavLink exact className={isFooter ? "links__footer" : "links__header"}  activeStyle={isFooter ? activeStyleFooter : activeStyleHeader} to="/profile">Profile</NavLink>
                 </li>
                 <li>
-                    <Link to="/">
-                        <button>Logout</button>
-                    </Link>
+                        <button onClick={() => {setLogOut(!logOut)}}>
+                            Logout
+                        </button>
                 </li>
             </ul>
         </nav>
