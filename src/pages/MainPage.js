@@ -3,7 +3,7 @@ import Article from "../components/Article/Article";
 export default function MainPage() {
 
     return (
-        <div style={{padding: "60px 0 110px 0"}}>
+        <div className="page__padding">
             <div className="container">
                 <LastArticle/>
                 <h1 style={{fontFamily:'Playfair Display',
@@ -11,15 +11,14 @@ export default function MainPage() {
                 <Article/>
                 <Article/>
                 <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
-                <Article/>
-
+                {/*<Article/>*/}
+                {/*<Article/>*/}
+                {/*<Article/>*/}
+                {/*<Article/>*/}
+                {/*<Article/>*/}
+                {/*<Article/>*/}
+                {/*<Article/>*/}
+                {/*<Article/>*/}
             </div>
         </div>
 

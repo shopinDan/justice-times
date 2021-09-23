@@ -3,10 +3,9 @@ import './navbutton.sass'
 
 export default function NavButton(props) {
     const {isFooter} = props;
-    console.log(isFooter);
     return (
         <div className="btn__wrapper">
-            <Link to="/login">
+            <Link  to="/login">
                 <button className={isFooter ? "login__btn login__btn__footer": "login__btn"} >Log in</button>
             </Link>
             <Link to="/sigin">

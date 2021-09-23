@@ -1,0 +1,87 @@
+.my-article{
+  padding-bottom: 17px;
+  border-bottom: 1px solid #EBEBEB;
+  max-width: 664px;
+  width: 100%;
+  margin-bottom: 40px ;
+  &__img {
+    margin-bottom: 32px;
+    max-width: 664px;
+    width: 100%;
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  .card {
+    border: none;
+    &__tag{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 26px;
+      margin-bottom: 24px;
+      background: #F7F7F7;
+      border-radius: 118px;
+      font-size: 12px;
+      color: #8C8C8C;
+      font-family: 'Inter', serif;
+      margin-bottom: 24px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 16px;
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 32px;
+      color: #242424;
+    }
+    &__text {
+      font-size: 16px;
+      line-height: 24px;
+      color: #8C8C8C;
+      font-family: 'IBM Plex Sans',serif;
+      margin-bottom: 24px;
+    }
+    &__info{
+      display: flex;
+      height: 48px;
+      align-items: center;
+      &__img{
+        overflow: hidden;
+        border-radius: 50%;
+        max-width: 40px;
+        max-height: 40px;
+        margin-right: 8px;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      &__name {
+        font-family: 'IBM Plex Sans',serif;
+        font-weight: 500;
+        font-size: 14px;
+        margin-right: 24px;
+        color: #8C8C8C;
+      }
+      &__date-time{
+        font-family: 'IBM Plex Sans', serif;
+        font-weight: normal;
+        font-size: 12px;
+        color: #8C8C8C;
+        margin-right: 24px;
+      }
+      &__watches{
+        font-family: 'IBM Plex Sans', serif;
+        font-size: 12px;
+        color: #8C8C8C;
+        i{
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,85 @@
+.profile-form{
+  display: flex;
+  form{
+    display: flex;
+  }
+  &__foto{
+    max-width: 366px;
+    width: 100%;
+    height: 382px;
+    display: flex;
+    border: 10px solid #F2F2F2;
+    flex-direction: column;
+    align-items: center;
+    background: #FBFBFB;
+    padding-top: 58px;
+    margin-right: 40px;
+    button{
+      width: 161px;
+      height: 48px;
+      border: 1px solid #242424;
+      font-family: 'IBM Plex Sans', serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 16px;
+      background: #FFFFFF;
+      color: #242424;
+
+    }
+  }
+  &__img{
+    overflow: hidden;
+    border-radius: 50%;
+    width: 126px;
+    height: 126px;
+    background: #E5E5E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  &__info label{
+    font-family: 'IBM Plex Sans';
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    color: #242424;
+    &:first-child{
+      margin-right: 32px;
+    }
+    input {
+      width: 316px;
+      height: 47px;
+      border: 1px solid #E1E1E1;
+      margin: 12px 0 32px;
+      font-size: 16px;
+      line-height: 16px;
+      color: #242424;
+      padding-left: 15px;
+    }
+    textarea{
+      width: 664px;
+      height: 155px;
+      resize: none;
+      border: 1px solid #E1E1E1;
+      padding: 15px;
+      font-size: 16px;
+      line-height: 16px;
+      color: #242424;
+    }
+  }
+  &__btn{
+    margin:53px 0 52px ;
+    width: 164px;
+    height: 48px;
+    background: #242424;
+    border: none;
+    font-family: 'IBM Plex Sans', serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: #FFFFFF;
+  }
+}

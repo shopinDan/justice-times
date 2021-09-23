@@ -11,10 +11,6 @@ import Profile from "./pages/Profile";
 import AddArticle from "./pages/AddArticle";
 import Footer from "./components/footer/Footer";
 
-
-
-
-
 import {
     BrowserRouter as Router,
     Switch,
@@ -26,7 +22,7 @@ function App() {
     return (
         <Router>
             <div>
-                <Header isLogged={true}/>
+                <Header isLogged={false}/>
                 <Switch>
                     <Route exact path="/sigin">
                         <SignIn/>
