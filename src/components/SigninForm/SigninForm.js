@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import './SigninForm.scss'
+
 
 
 
@@ -9,23 +10,23 @@ export default function SigninForm () {
         fname:"",
         lname:"",
         email: "",
-        password: ""
+        password: "",
+        description: "",
+        articles: []
     })
+    const [userLocal, setUserLocal] = useState(localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : []);
     const history = useHistory();
+    useEffect(()=>{
+        localStorage.setItem("users", JSON.stringify(userLocal));
+    }, [userLocal]);
     const changeHandler = (event) => {
-        setForm({...form, [event.target.name]: event.target.value})
+        setForm({...form, [event.target.name]: event.target.value});
     }
     const handleSubmit =  (event) => {
         event.preventDefault();
-        const userLocal = localStorage.getItem("users");
-        let objUser =[];
-        if(userLocal) {
-            objUser = JSON.parse(userLocal);
-        }
-        objUser.push(form);
-        localStorage.setItem("users", JSON.stringify(objUser));
-        history.push('/login')
+        setUserLocal([...userLocal, form]);
     }
+    
     return (
         <div className="signin-form-wrapper">
             <h2>Create your free account</h2>

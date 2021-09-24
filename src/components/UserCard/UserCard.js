@@ -1,6 +1,7 @@
 import './UserCard.scss'
 
 export default function UserCard() {
+    // const
     return (
         <div className="user-card">
             <div className="user-card__img">

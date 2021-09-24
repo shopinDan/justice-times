@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LoginForm.scss'
 import { Link, useHistory } from "react-router-dom";
 
 export default function  LoginForm () {
-    const [form, setForm] = useState({email:"", password:""});
-    const history = useHistory();
 
+    const [form, setForm] = useState({email:"", password:""});
+    const [isSignIn, changeIsSignIng] = useState(false);
+
+    // const history = useHistory();
+
+    useEffect(key=>{
+        localStorage.setItem('isLogin', JSON.stringify(isSignIn));
+        localStorage.setItem('email', JSON.stringify(form.email));
+        }, [isSignIn])
 
     const changeHandler = (event) => {
         setForm({...form, [event.target.name]: event.target.value})
     }
 
     const handleSubmit = (event) => {
-      const storageUsers = JSON.parse(localStorage.getItem("users"));
-      let isSignIn = false;
-      storageUsers.forEach(item => item.email === form.email && item.password === form.password ? isSignIn = true: null);
-      if (isSignIn) {
-          localStorage.setItem("isLogin", JSON.stringify(true));
-          history.push('/');
-      }
+        event.preventDefault();
+        const storageUsers = JSON.parse(localStorage.getItem("users"));
+        storageUsers.forEach(item => item.email === form.email && item.password === form.password ? changeIsSignIng(true): null);
     }
+
     return (
         <div className="login-form-wrapper">
             <h2>Log in to your account </h2>

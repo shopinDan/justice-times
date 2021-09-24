@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 
 export default function NavLinks(props) {
-    let [logOut, setLogOut] = useState(JSON.parse(localStorage.getItem("isLogin")))
+    const [logOut, setLogOut] = useState(JSON.parse(localStorage.getItem("isLogin")))
     const {isFooter} = props;
     const activeStyleHeader = {
         color: "#242424",
