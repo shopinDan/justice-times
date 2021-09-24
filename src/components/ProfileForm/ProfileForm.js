@@ -23,7 +23,7 @@ export default function ProfileForm() {
         event.preventDefault();
 
         setUsers(users.map(item => {
-            if (item.email === loginUser.current) {
+            if (item.email === loginUser) {
                 item.fname = form.fname;
                 item.lname = form.lname;
                 item.description = form.description;
