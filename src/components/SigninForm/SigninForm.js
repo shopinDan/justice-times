@@ -14,7 +14,8 @@ export default function SigninForm () {
         description: "",
         articles: []
     })
-    const [userLocal, setUserLocal] = useState(localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : []);
+    const [userLocal, setUserLocal] = useState(localStorage.getItem("users") ?
+        JSON.parse(localStorage.getItem("users")) : []);
     const history = useHistory();
     useEffect(()=>{
         localStorage.setItem("users", JSON.stringify(userLocal));
