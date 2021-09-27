@@ -1,0 +1,40 @@
+.add-article-form__wrapper {
+  h2{
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 56px;
+    color: #242424;
+    margin-bottom: 64px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    input{
+      height: 48px;
+      border: 1px solid #E1E1E1;
+      box-sizing: border-box;
+      margin-bottom: 24px;
+      padding-left: 15px;
+    }
+    textarea {
+      height: 335px;
+      border: 1px solid #E1E1E1;
+      margin-bottom: 48px;
+      resize: none;
+      padding: 15px;
+    }
+    .sub__btn {
+      width: 188px;
+      height: 48px;
+      background: #242424;
+      font-family: 'IBM Plex Sans', serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 16px;
+      color: #FFFFFF;
+    }
+  }
+}

@@ -1,21 +1,18 @@
 import './ProfileForm.scss'
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function ProfileForm() {
+
     const [users, setUsers] = useState(JSON.parse(localStorage.getItem("users")));
     const [loginUser,] = useState(JSON.parse(localStorage.getItem("email")));
-
-
 
     const [form, setForm] = useState({
         fname: users.filter(item=> item.email === loginUser)[0].fname,
         lname: users.filter(item=> item.email === loginUser)[0].lname,
         description: users.filter(item=> item.email === loginUser)[0].description});
 
-
     const changeHandler = (event) => {
-
         setForm({...form, [event.target.name]: event.target.value});
     }
 
@@ -40,23 +37,41 @@ export default function ProfileForm() {
             <form onSubmit={handleSubmit}>
                 <div className="profile-form__foto">
                     <div className="profile-form__img">
-                        <img src="img/no_avatar.png" alt=""/>
+                        <img
+                            src="img/no_avatar.png"
+                            alt=""/>
                     </div>
-                    <input type="file" style={{display:"none"}}/>
+                    <input
+                        type="file"
+                        style={{display:"none"}}/>
                     <button>Upload</button>
                 </div>
                 <div className="profile-form__info">
                     <label>First name<br/>
-                        <input type="text" value={form.fname} name="fname" onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            value={form.fname}
+                            name="fname"
+                            onChange={changeHandler}/>
                     </label>
                     <label>Last name<br/>
-                        <input type="text" value={form.lname}  name="lname" onChange={changeHandler}/>
+                        <input
+                            type="text"
+                            value={form.lname}
+                            name="lname"
+                            onChange={changeHandler}/>
                     </label>
                     <label>Description<br/>
-                        <textarea  value={form.description} name="description" onChange={changeHandler}/>
+                        <textarea
+                            value={form.description}
+                            name="description"
+                            onChange={changeHandler}/>
                     </label>
                     <br/>
-                    <input className='profile-form__btn' type='submit' value='Set Account'/>
+                    <input
+                        className='profile-form__btn'
+                        type='submit'
+                        value='Set Account'/>
                 </div>
             </form>
         </div>
