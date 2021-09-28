@@ -1,5 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import './AddArticleForm.scss'
+
+import { EditorState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+
+
+import './AddArticleForm.scss';
+import 'draft-js/dist/Draft.css';
 
 
 function AddArticleForm() {
@@ -12,9 +21,13 @@ function AddArticleForm() {
     const [loginUser,] = useState(JSON.parse(localStorage.getItem("email")));
     const [usersLocal, setUserLocal] = useState(localStorage.getItem("users") ?
         JSON.parse(localStorage.getItem("users")) : []);
+    const [editorState, setEditorState] = useState(
+        EditorState.createEmpty()
+    );
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
         setUserLocal(usersLocal.map(item => {
             if (item.email === loginUser) {
                 item.articles.push(form);
@@ -23,14 +36,35 @@ function AddArticleForm() {
         }))
     }
 
+    useEffect(()=>{
+        setForm((prevState => ({
+            ...prevState, text: draftToHtml(convertToRaw(editorState.getCurrentContent()))
+        })));
+    }, [editorState])
+
     const changeHandler = (event) => {
-        setForm({...form, [event.target.name]: event.target.value});
+        const {value, name} = event.target;
+
+        if (name === 'title') {
+            setForm(((prevState => ({
+                ...prevState,
+                title: value
+            }))))
+        } else {
+            setForm((prevState => ({
+                ...prevState, category: value,
+            })))
+        }
+        
+        console.log(form)
     }
 
     useEffect(()=> {
         localStorage.setItem("users", JSON.stringify(usersLocal))
-    }, [usersLocal])
-    
+    }, [usersLocal]);
+
+
+
     return (
             <div className="add-article-form__wrapper">
                 <h2>Add article</h2>
@@ -45,15 +79,23 @@ function AddArticleForm() {
                         name="category"
                         placeholder="Enter the category name..."
                         onChange={changeHandler}/>
-                    <textarea
-                        name="text"
+                    <Editor
+                        editorState={editorState}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
                         placeholder="Enter the text..."
-                        onChange={changeHandler}/>
+                        onEditorStateChange={(e) => {
+                            setEditorState(e);
+                        }}
+                    />
                     <input
                         className="sub__btn"
                         type="submit"
                         value="Publish an article"/>
                 </form>
+
+
             </div>
     )
         ;
