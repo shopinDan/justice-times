@@ -9,7 +9,7 @@ export default function Article({title, category, text, fname, lname}) {
             <div className="card">
                 <div className="card__tag"> #{category}</div>
                 <h2>{title}</h2>
-                <div className="card__text">{text}</div>
+                <div className="card__text"  dangerouslySetInnerHTML={{__html: `${text}`}}/>
                 <div className="card__info">
                     <div className="card__info__img"><img src="img/info_img.png" alt=""/></div>
 
