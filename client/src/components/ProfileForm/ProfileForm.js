@@ -1,38 +1,41 @@
 import './ProfileForm.scss'
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 
 
 
 export default function ProfileForm() {
 
-    const [users, setUsers] = useState(JSON.parse(localStorage.getItem("users")));
-    const [loginUser,] = useState(JSON.parse(localStorage.getItem("email")));
+
+    const [userId, ] = useState(localStorage.getItem('userId'));
+    const [token, ] = useState(localStorage.getItem('token'));
 
     const [form, setForm] = useState({
-        fname: users.filter(item=> item.email === loginUser)[0].fname,
-        lname: users.filter(item=> item.email === loginUser)[0].lname,
-        description: users.filter(item=> item.email === loginUser)[0].description});
+        fname: '',
+        lname: '',
+        description: ''});
 
     const changeHandler = (event) => {
         setForm({...form, [event.target.name]: event.target.value});
     }
 
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/api/profile/${userId}`, { headers: {"Authorization" : token}})
+            .then(res=>setForm({
+                fname: res.data.fname,
+                lname: res.data.lname,
+                description: res.data.description}))
+    }, [])
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        setUsers(users.map(item => {
-            if (item.email === loginUser) {
-                item.fname = form.fname;
-                item.lname = form.lname;
-                item.description = form.description;
-            }
-            return item;
-        }));
+        axios.patch(`http://localhost:5000/api/profile/${userId}`, {...form}, { headers: {"Authorization" : token}})
+            .then(res=>console.log(res))
+            .catch(err=>console.log(err))
     }
-    useEffect(()=> {
-        localStorage.setItem("users", JSON.stringify(users));
-    }, [users])
 
     return (
         <div className="profile-form">

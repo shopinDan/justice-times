@@ -6,23 +6,15 @@ import axios from "axios";
 
 export default function MainPage() {
 
-    const [users, setUsers] = useState([])
     const [articles, setArticles] = useState([])
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/api/profile`)
-            .then((res)=> {
-                setUsers(res.data)
-            }).then(()=>{
             axios.get(`http://localhost:5000/api/articles`)
                 .then((res)=> {
                     setArticles(res.data)
                 })
                 .catch(err=>console.log(err))
-        })
-            .catch(err=>console.log(err))
     }, [])
-
 
     return (
         <div className="page__padding">
@@ -44,13 +36,12 @@ export default function MainPage() {
                 }}>Popular articles</h1>
                 {articles.map((article)=> (
                         <Article
+                            id={article._id}
                             key={article._id}
                             title={article.title}
                             category={article.category}
                             text={article.description}
                             views={article.views}
-                            user={users.filter(user => ( article.user === user._id))[0]}
-                            lname={users.filter(user=>(article.user === user._id))[0]}
                         />
                 ))}
             </div>

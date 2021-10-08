@@ -7,6 +7,6 @@ const upload = require('../middleware/upload')
 
 router.get('/', controller.getAllArticles)
 router.post('/', passport.authenticate('jwt', {session: false}), upload.single('image'), controller.createArticle)
-router.patch('/:id', passport.authenticate('jwt', {session: false}), controller.getArticleById)
+router.patch('/:id',controller.getArticleById)
 
 module.exports = router

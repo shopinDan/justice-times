@@ -6,6 +6,8 @@ import Profile from "../../pages/Profile";
 import SignIn from "../../pages/SignIn";
 import Login from "../../pages/Login";
 import React from "react";
+import ArticlePage from "../../pages/ArticlePage";
+
 
 const ProtectedRoute = ({storageIsLogin, setStorageIsLogin}) => {
     if (storageIsLogin) {
@@ -16,6 +18,9 @@ const ProtectedRoute = ({storageIsLogin, setStorageIsLogin}) => {
                 </Route>
                 <Route exact path="/">
                     <MainPage/>
+                </Route>
+                <Route exact path="/article/:id">
+                    <ArticlePage id/>
                 </Route>
                 <Route exact path="/add-article">
                     <AddArticle/>

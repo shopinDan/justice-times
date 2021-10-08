@@ -9,6 +9,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 import './AddArticleForm.scss';
 import 'draft-js/dist/Draft.css';
+import axios from "axios";
 
 
 function AddArticleForm() {
@@ -16,29 +17,27 @@ function AddArticleForm() {
     const [form, setForm] = useState({
         title: "",
         category: "",
-        text: "",
+        description: "",
     })
-    const [loginUser,] = useState(JSON.parse(localStorage.getItem("email")));
-    const [usersLocal, setUserLocal] = useState(localStorage.getItem("users") ?
-        JSON.parse(localStorage.getItem("users")) : []);
+
     const [editorState, setEditorState] = useState(
         EditorState.createEmpty()
     );
 
+    const [token, ] = useState(localStorage.getItem('token'));
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log('form', {...form})
+        axios.post('http://localhost:5000/api/articles', {...form},{headers: {"Authorization": token}})
+            .then((res =>console.log('res', res) ))
+            .catch(err=> console.log('err', err))
 
-        setUserLocal(usersLocal.map(item => {
-            if (item.email === loginUser) {
-                item.articles.push(form);
-            }
-            return item;
-        }))
     }
 
     useEffect(()=>{
         setForm((prevState => ({
-            ...prevState, text: draftToHtml(convertToRaw(editorState.getCurrentContent()))
+            ...prevState, description: draftToHtml(convertToRaw(editorState.getCurrentContent()))
         })));
     }, [editorState])
 
@@ -55,14 +54,7 @@ function AddArticleForm() {
                 ...prevState, category: value,
             })))
         }
-        
-        console.log(form)
     }
-
-    useEffect(()=> {
-        localStorage.setItem("users", JSON.stringify(usersLocal))
-    }, [usersLocal]);
-
 
 
     return (

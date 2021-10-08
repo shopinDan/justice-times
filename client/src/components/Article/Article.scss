@@ -16,6 +16,9 @@
     max-width: 680px;
     border: none;
     border-bottom: 1px solid #EBEBEB;
+    a {
+      text-decoration: none;
+    }
     &__tag{
       display: flex;
       justify-content: center;
